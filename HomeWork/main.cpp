@@ -4,26 +4,33 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+template<typename T>
+void FillRand(T arr[], const int n);
+template<typename T>
+void Print(T arr[], const int n);
 
-void FillRand(int arr[], const int n);
-void Print(int arr[], const int n);
+template<typename T>
+T* push_back(T arr[], int& n, int value);
+template<typename T>
+T* push_front(T arr[], int& n, int value);
 
-int* push_back(int arr[], int& n, int value);
-int* push_front(int arr[], int& n, int value);
+template<typename T>
+T* insert(T arr[], int& n, int index, int value);
 
-int* insert(int arr[], int& n, int index, int value);
+template<typename T>
+T* pop_back(T arr[], int& n);
+template<typename T>
+T* pop_front(T arr[], int& n);
 
-int* pop_back(int arr[], int& n);
-int* pop_front(int arr[], int& n);
-
-int* erase(int arr[], int& n, int index);
+template<typename T>
+T* erase(T arr[], int& n, int index);
 
 void main()
 {
 	setlocale(LC_ALL, "");
 	int n;
 	cout << "¬ведите размер массива: "; cin >> n;
-	int* arr = new int[n];
+	char* arr = new char[n];
 
 	FillRand(arr, n);
 	cout << "»сходный массив:\n";
@@ -59,7 +66,9 @@ void main()
 	delete[] arr;
 
 }
-void FillRand(int arr[], const int n)
+
+template<typename T>
+void FillRand(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -68,7 +77,9 @@ void FillRand(int arr[], const int n)
 	}
 
 }
-void Print(int arr[], const int n)
+
+template<typename T>
+void Print(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -76,10 +87,13 @@ void Print(int arr[], const int n)
 		cout << arr[i] << "\t";
 	}
 	cout << endl;
-}int* push_back(int arr[], int& n, int value)
+}
+
+template<typename T>
+T* push_back(T arr[], int& n, int value)
 {
 	//1) создаем буферный массив
-	int* buffer = new int[n + 1]{};
+	T* buffer = new T[n + 1]{};
 	//2) копируем все элементы из исходного в буферный массив
 	for (int i = 0; i < n; i++)
 	{
@@ -99,10 +113,12 @@ void Print(int arr[], const int n)
 	//всЄ !!!
 	return arr;
 }
-int* push_front(int arr[], int& n, int value)
+
+template<typename T>
+T* push_front(T arr[], int& n, int value)
 {
 	//1) объ€вл€ем буферный массив нужного размера
-	int* buffer = new int[n + 1]{};
+	T* buffer = new T[n + 1]{};
 	//2) копируем все элементы из исходного массива в буферный
 	for (int i = 0; i < n; i++)
 	{
@@ -121,10 +137,11 @@ int* push_front(int arr[], int& n, int value)
 	return arr;
 }
 
-int* insert(int arr[], int& n, int index, int value)
+template<typename T>
+T* insert(T arr[], int& n, int index, int value)
 {
 	//1) объ€вл€ем буферный массив нужного размера
-	int* buffer = new int[n + 1]{};
+	T* buffer = new T[n + 1]{};
 	//2) копируем все элементы из исходного массива в буферный
 	for (int i = 0; i < index; i++)
 	{
@@ -147,10 +164,11 @@ int* insert(int arr[], int& n, int index, int value)
 	return arr;
 }
 
-int* pop_back(int arr[], int& n)
+template<typename T>
+T* pop_back(T arr[], int& n)
 {
 	//1) обь€вл€ем буферный массив нужного размера
-	int* buffer = new int[n-1]{};
+	T* buffer = new T[n-1]{};
 	//2) копируем все элементы из исходного массива в буферный
 	for (int i = 0; i < n-1; i++)
 	{
@@ -165,10 +183,11 @@ int* pop_back(int arr[], int& n)
 	return arr;
 }
 
-int* pop_front(int arr[], int& n)
+template<typename T>
+T* pop_front(T arr[], int& n)
 {
 	//1) обь€вл€ем буферный массив нужного размера
-	int* buffer = new int[n - 1]{};
+	T* buffer = new T[n - 1]{};
 	//2) копируем все элементы из исходного массива в буферный
 	for (int i = 0; i < n - 1; i++)
 	{
@@ -182,10 +201,12 @@ int* pop_front(int arr[], int& n)
 	n--;
 	return arr;
 }
-int* erase(int arr[], int& n, int index)
+
+template<typename T>
+T* erase(T arr[], int& n, int index)
 {
 	//1) объ€вл€ем буферный массив нужного размера
-	int* buffer = new int[n - 1]{};
+	T* buffer = new T[n - 1]{};
 	//2) копируем все элементы из исходного массива в буферный
 	for (int i = 0; i < index; i++)
 	{
